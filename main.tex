@@ -4,6 +4,7 @@
 \usepackage{verbatim}
 \usepackage{lmodern}
 \usepackage{multirow}
+\usepackage{tikz}
 
 
 % Dados do autor
@@ -59,7 +60,7 @@
   </html>
   \end{verbatim}
 
-  O elemento <html> é o contêiner principal, contendo <head> e <body>, onde o conteúdo visível é colocado.
+  O elemento \texttt{<html>} é o contêiner principal, contendo \texttt{<head>} e \texttt{<body>}, onde o conteúdo visível é colocado.
 \end{frame}
 
 % Slide sobre Cabeçalhos e Parágrafos
@@ -706,7 +707,7 @@ Reproduza a seguinte tabela:
 \begin{frame}[fragile]
   \frametitle{Caixas de Seleção (Checkboxes) em HTML}
 
-  A tag \texttt{<input type="checkbox">} define uma caixa de seleção.
+  A tag \texttt{<input type="checkbox"}\texttt{>} define uma caixa de seleção.
 
   Caixas de seleção permitem que o usuário selecione ZERO ou MAIS opções de um número limitado de escolhas.
 
@@ -791,6 +792,455 @@ Reproduza a seguinte tabela:
 
     \label{fig:enter-label}
 \end{figure}
+    
+\end{frame}
+
+
+
+\begin{frame}
+  \frametitle{Novos Elementos em Formulários HTML5}
+
+  O HTML5 introduziu vários novos elementos para melhorar a semântica e funcionalidade dos formulários.
+
+  \begin{itemize}
+    \item \texttt{<input type="email"}\texttt{>} - Campo de Email
+    \item \texttt{<input type="url"}\texttt{>} - Campo de URL
+    \item \texttt{<input type="tel"}\texttt{>} - Campo de Telefone
+    \item \texttt{<input type="number"}\texttt{>} - Campo Numérico
+    \item \texttt{<input type="date"}\texttt{>} - Campo de Data
+    \item \texttt{<input type="color"}\texttt{>} - Seletor de Cor
+    \item \texttt{<input type="range"}\texttt{>} - Controle de Intervalo
+    \item \texttt{<datalist>} - Lista de Dados para Campos de Texto
+    \item \texttt{<textarea>} - Área de Texto Multilinhas
+    \item \texttt{<output>} - Resultado ou Cálculo de Formulário
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Campo de Email em HTML5 (\texttt{<input type="email"}\texttt{>})}
+
+  O elemento \texttt{<input type="email"}\texttt{>} é usado para campos de entrada de endereço de email. Atributos importantes:
+
+  \begin{itemize}
+    \item \texttt{name} - Nome do campo.
+    \item \texttt{id} - Identificador único do campo.
+    \item \texttt{required} - Indica que o campo é obrigatório.
+    \item \texttt{placeholder} - Texto de exemplo exibido no campo.
+    \item \texttt{pattern} - Define uma expressão regular para validar o formato do email.
+  \end{itemize}
+
+\begin{block}{Exemplo}
+  \begin{verbatim}
+  <label for="email">Endereço de Email:</label>
+  <input type="email" id="email" name="email" required
+         placeholder="seuemail@example.com"
+         pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+  \end{verbatim}
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Campo de URL em HTML5 (\texttt{<input type="url"}\texttt{>})}
+
+  O elemento \texttt{<input type="url"}\texttt{>} é usado para campos de entrada de URLs. Atributos importantes:
+
+  \begin{itemize}
+    \item \texttt{name} - Nome do campo.
+    \item \texttt{id} - Identificador único do campo.
+    \item \texttt{required} - Indica que o campo é obrigatório.
+    \item \texttt{placeholder} - Texto de exemplo exibido no campo.
+    \item \texttt{multiple} - Mais de uma entrada, seguida de (,).
+    \item \texttt{pattern} - Define uma expressão regular para validar a URL.
+  \end{itemize}
+  
+\begin{block}{Exemplo}
+  \begin{verbatim}
+  <label for="website">Website:</label>
+  <input type="url" id="website" name="website" required
+         placeholder="https://www.example.com"
+         pattern="https?://.*">
+  \end{verbatim}    
+\end{block}
+
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Campo de Telefone em HTML5 (\texttt{<input type="tel"}\texttt{>})}
+
+  O elemento \texttt{<input type="tel"\texttt{>}} é usado para campos de entrada de números de telefone. Atributos importantes:
+  \begin{itemize}
+    \item \texttt{name} - Nome do campo.
+    \item \texttt{id} - Identificador único do campo.
+    \item \texttt{required} - Indica que o campo é obrigatório.
+    \item \texttt{placeholder} - Texto de exemplo exibido no campo.
+    \item \texttt{pattern} - Define uma expressão regular para validar o formato do telefone.
+  \end{itemize}
+
+  \begin{block}{Exemplo}
+    \begin{verbatim}
+    <label for="phone">Telefone:</label>
+    <input type="tel" id="phone" name="phone" required
+           placeholder="(XX) XXXX-XXXX"
+           pattern="\(\d{2}\) \d{4}-\d{4}">
+    \end{verbatim}
+  \end{block}
+\end{frame}
+
+
+
+\begin{frame}[fragile]
+  \frametitle{Campo Numérico em HTML5 (\texttt{<input type="number"}\texttt{>})}
+
+  O elemento \texttt{<input type="number"}\texttt{>} é usado para campos de entrada numérica.  Atributos importantes:
+
+  \begin{itemize}
+    \item \texttt{name} - Nome do campo.
+    \item \texttt{id} - Identificador único do campo.
+    \item \texttt{min} e \texttt{max} - Definem o intervalo mínimo e máximo de valores.
+    \item \texttt{step} - Define o incremento para aumentar ou diminuir o valor.
+    \item \texttt{value} - Define o valor inicial.
+    \item \texttt{required} - Indica que o campo é obrigatório.
+  \end{itemize}
+
+  \begin{block}{Exemplo}
+    \begin{verbatim}
+    <label for="quant">Quantidade:</label>
+    <input type="number" id="quantity" name="quant"
+           min="1" max="10" step="1" value="1" required>
+    \end{verbatim}
+  \end{block}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Campo de Data em HTML5 (\texttt{<input type="date"...>})}
+
+  O elemento \texttt{<input type="date" ...>} é usado para campos de entrada de datas. Atributos importantes:
+
+  \begin{itemize}
+    \item \texttt{name} - Nome do campo.
+    \item \texttt{id} - Identificador único do campo.
+    \item \texttt{min} e \texttt{max} - Definem o intervalo mínimo e máximo de datas.
+    \item \texttt{value} - Define o valor inicial.
+    \item \texttt{required} - Indica que o campo é obrigatório.
+  \end{itemize}
+
+  \begin{block}{Exemplo}
+    \begin{verbatim}
+    <label for="dob">Data de Nascimento:</label>
+    <input type="date" id="dob" name="dob"
+           min="1900-01-01" max="2023-12-31" required>
+    \end{verbatim}
+  \end{block}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Seletor de Cor em HTML5 (\texttt{<input type="color" ...>})}
+
+  O elemento \texttt{<input type="color" ...>} é usado para campos de seleção de cor. Atributos importantes:
+
+  \begin{itemize}
+    \item \texttt{name} - Nome do campo.
+    \item \texttt{id} - Identificador único do campo.
+    \item \texttt{value} - Define a cor inicial selecionada (formato hexadecimal).
+    \item \texttt{required} - Indica que o campo é obrigatório.
+  \end{itemize}
+
+  \begin{block}{Exemplo}
+    \begin{verbatim}
+    <label for="color">Escolha uma cor:</label>
+    <input type="color" id="color" name="color"
+           value="#ff0000" required>
+    \end{verbatim}
+  \end{block}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Intervalo em HTML5 (\texttt{<input type="range" ...>})}
+
+  O elemento \texttt{<input type="range" ...>} é usado para criar controles de intervalo (faixas deslizantes). Atributos importantes:
+
+  \begin{itemize}
+    \item \texttt{min} e \texttt{max} - Definem o intervalo mínimo e máximo de valores.
+    \item \texttt{step} - Define o incremento para ajustar o valor.
+    \item \texttt{value} - Define o valor inicial.
+  \end{itemize}
+
+  \begin{block}{Exemplo}
+    \begin{verbatim}
+    <label for="volume">Volume:</label>
+    <input type="range" id="volume" name="volume"
+           min="0" max="100" step="1" value="50">
+    \end{verbatim}
+  \end{block}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Intervalo com Ticks (\texttt{<input type="range" ...>})}
+
+  O elemento \texttt{<input type="range" ...>} pode incluir marcas de seleção (ticks) para indicar valores específicos.
+
+  \begin{block}{Exemplo com Ticks}
+    \begin{verbatim}
+    <label for="brightness">Brilho:</label>
+    <input type="range" id="brightness" name="brightness"
+           min="0" max="100" step="10" value="50"
+           list="tickmarks">
+    <datalist id="tickmarks">
+      <option value="0">
+      <option value="25">
+      <option value="50">
+      <option value="75">
+      <option value="100">
+    </datalist>
+    \end{verbatim}
+  \end{block}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Elemento \texttt{<datalist>} em HTML5}
+
+  O elemento \texttt{<datalist>} é usado para fornecer uma lista de opções predefinidas para um campo de entrada.
+
+  \begin{block}{Exemplo com \texttt{<datalist>}}
+    \begin{verbatim}
+    <label for="browser">Navegador:</label>
+    <input type="text" id="browser" name="browser" 
+    list="browsers">
+    <datalist id="browsers">
+      <option value="Chrome">
+      <option value="Firefox">
+      <option value="Edge">
+      <option value="Safari">
+      <option value="Opera">
+    </datalist>
+    \end{verbatim}
+  \end{block}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Campo de Texto Multilinha em HTML5 (\texttt{<textarea>})}
+
+  O elemento \texttt{<textarea>} é usado para campos de texto multilinha. Atributos importantes:
+
+  \begin{itemize}
+    \item \texttt{rows} e \texttt{cols} - Número de linhas e colunas do campo.
+    \item \texttt{placeholder} - Texto de exemplo exibido no campo.
+    \item \texttt{required} - Indica que o campo é obrigatório.
+    \item \texttt{maxlength} - Número máximo de caracteres permitidos.
+  \end{itemize}
+
+  \begin{block}{Exemplo com \texttt{<textarea>}}
+    \begin{verbatim}
+    <label for="comments">Comentários:</label>
+    <textarea id="comments" name="comments"
+              rows="4" cols="40"
+              placeholder="Digite seus comentários..."
+              required maxlength="200"></textarea>
+    \end{verbatim}
+  \end{block}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Elemento \texttt{<output>} em HTML5}
+
+  O elemento \texttt{<output>} é usado para exibir o resultado de um cálculo ou processamento. 
+
+  \begin{block}{Exemplo com \texttt{<output>}}
+    \begin{verbatim}
+    <form oninput="result.value=parseInt(a.value) + 
+        parseInt(b.value)">
+      <label for="a">Número A:</label>
+      <input type="number" id="a" name="a" value="0">
+      +
+      <label for="b">Número B:</label>
+      <input type="number" id="b" name="b" value="0">
+      =
+      <output name="result">0</output>
+    </form>
+    \end{verbatim}
+  \end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Elementos \texttt{<fieldset>} e \texttt{<legend>}}
+
+  Os elementos \texttt{<fieldset>} e \texttt{<legend>} são usados para agrupar e identificar elementos relacionados de um formulário.
+
+  \begin{block}{Exemplo com \texttt{<fieldset>} e \texttt{<legend>}}
+    \begin{verbatim}
+    <form>
+      <fieldset>
+        <legend>Informações Pessoais</legend>
+        <label for="name">Nome:</label>
+        <input type="text" id="name" name="name">
+        <br>
+        <label for="email">E-mail:</label>
+        <input type="email" id="email" name="email">
+      </fieldset>
+    </form>
+    \end{verbatim}
+  \end{block}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Elementos \texttt{<fieldset>} e \texttt{<legend>}}
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{img/Fieldset-2.png}
+
+\end{figure}
+
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Elemento \texttt{<map>} em HTML}
+
+  O elemento \texttt{<map>} é usado em conjunto com a tag \texttt{<area>} para criar mapas de imagem sensíveis a cliques em HTML.
+
+  \begin{block}{Uso do \texttt{<map>}}
+    \begin{verbatim}
+<img src="mapa.png" usemap="#imagemMapa">
+<map name="imagemMapa">
+  <area shape="rect" coords="0,0,100,100" href="link1.html"
+    alt="Área 1">
+  <area shape="circle" coords="150,150,50" href="link2.html"
+    alt="Área 2">
+  <area shape="poly" coords="200,50,250,100,200,150" 
+    href="link3.html" alt="Área 3">
+</map>
+    \end{verbatim}
+  \end{block}
+
+  As áreas especificadas pelas tags \texttt{<area>} definem regiões clicáveis na imagem, redirecionando o usuário para diferentes páginas ou ações.
+
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Formas para Áreas de Mapa Sensíveis em HTML}
+
+  O atributo \texttt{shape} da tag \texttt{<area>} é usado para definir a forma da área clicável em um mapa de imagem.
+
+  \begin{block}{Valores para o atributo \texttt{shape}}
+    \begin{itemize}
+      \item \texttt{rect} - Retângulo
+      \item \texttt{circle} - Círculo
+      \item \texttt{poly} - Polígono
+      \item \texttt{default} - Área padrão (quando não há correspondência com outras áreas)
+    \end{itemize}
+  \end{block}
+
+
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Elemento \texttt{<map>} em HTML}
+
+Formatos aceitos.
+
+  \begin{center}
+    \begin{tikzpicture}
+      % Retângulo
+      \draw[blue, thick] (0, 0) rectangle (3, 2);
+      \node[blue] at (1.5, 1) {Retângulo};
+
+      % Círculo
+      \draw[red, thick] (5, 1) circle (1);
+      \node[red] at (5, 0.5) {Círculo};
+
+      % Polígono
+      \draw[green, thick] (9, 0) -- (10.5, 0) -- (11, 1) -- (10, 2) -- cycle;
+      \node[green] at (10.5, 1) {Polígono};
+    \end{tikzpicture}
+  \end{center}
+\end{frame}
+
+
+
+\begin{frame}{Elemento \texttt{<map>} em HTML}
+
+Como pegar os poligonos
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.4\linewidth]{img/paint-map.JPG}
+    \caption{MS Paint}
+    \label{fig:enter-label}
+\end{figure}
+
+\textbf{Dica:} Ferramentas como \href{http://www.image-map.net/}{http://www.image-map.net/} podem ajudar a pegar coordenadas precisas para as áreas.
+
+  \begin{itemize}
+    \item Evita cálculos manuais e erros.
+    \item Facilita a criação de mapas complexos.
+  \end{itemize}
+
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Elemento \texttt{<iframe>} em HTML}
+
+  O elemento \texttt{<iframe>} é usado para incorporar conteúdo de outros documentos HTML em uma página.
+
+  \begin{itemize}
+    \item Permite exibir uma página da web dentro de outra página.
+    \item Pode exibir conteúdo de outro domínio.
+    \item Usado para incorporar mapas, vídeos, widgets, etc.
+  \end{itemize}
+
+  \vspace{1em}
+
+\begin{block}{Exemplo}
+\begin{verbatim}
+<iframe src="https://example.com" width="500" height="300">
+</iframe>
+\end{verbatim}    
+\end{block}
+  
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Elemento \texttt{<iframe>} em HTML}
+
+  O elemento \texttt{<iframe>} especifica um quadro incorporado (inline frame).
+
+  \begin{itemize}
+    \item O atributo \texttt{src} define a URL da página a ser incorporada.
+    \item Sempre inclua o atributo \texttt{title} (para leitores de tela).
+    \item Os atributos \texttt{height} e \texttt{width} especificam o tamanho do iframe.
+    \item Use \texttt{border:none;} para remover a borda ao redor do iframe.
+  \end{itemize}
+
+  \vspace{1em}
+
+\begin{block}{Exemplo}
+\begin{verbatim}
+<iframe src="https://www.ifspcjo.edu.br" width="500" 
+height="300" title="Exemplo"></iframe>
+\end{verbatim}    
+\end{block}
+  
+\end{frame}
+
+
+\begin{frame}{Exercício \texttt{iframe}}
+
+Criar um iframe: 
+\begin{itemize}
+    \item Mapa do google maps;
+    \item Vídeo do youtube.
+\end{itemize}
     
 \end{frame}
 
