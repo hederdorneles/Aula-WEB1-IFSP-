@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário de Cadastro</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        input[type="text"] {
+            width: 80%;
+        }
+    </style>
+</head>
+<body>
+    <h1>Formulário de Cadastro</h1>
+
+    <form id="cadastroForm">
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" required>
+
+        <label for="telefone">Telefone:</label>
+        <input type="tel" id="telefone" required>
+
+        <button type="button" onclick="adicionarCadastro()">Adicionar Cadastro</button>
+    </form>
+
+    <h2>Cadastros:</h2>
+
+    <table id="datagrid">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>Telefone</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <script>
+        var cadastros = [];
+
+        function adicionarCadastro() {
+            var nome = document.getElementById("nome").value;
+            var email = document.getElementById("email").value;
+            var telefone = document.getElementById("telefone").value;
+
+            if (nome && email && telefone) {
+                var cadastro = { nome: nome, email: email, telefone: telefone };
+                cadastros.push(cadastro);
+
+                atualizarDatagrid();
+                limparFormulario();
+            } else {
+                alert("Preencha todos os campos do formulário.");
+            }
+        }
+
+        function atualizarDatagrid() {
+            var tbody = document.querySelector("#datagrid tbody");
+            tbody.innerHTML = "";
+
+            for (var i = 0; i < cadastros.length; i++) {
+                var cadastro = cadastros[i];
+
+                var row = document.createElement("tr");
+                criarCelula(row, cadastro.nome);
+                criarCelula(row, cadastro.email);
+                criarCelula(row, cadastro.telefone);
+
+                var cellAcoes = document.createElement("td");
+
+                var botaoEditar = document.createElement("button");
+                botaoEditar.textContent = "Editar";
+                botaoEditar.onclick = criarEditarHandler(i);
+
+                var botaoExcluir = document.createElement("button");
+                botaoExcluir.textContent = "Excluir";
+                botaoExcluir.onclick = criarExcluirHandler(i);
+
+                cellAcoes.appendChild(botaoEditar);
+                cellAcoes.appendChild(botaoExcluir);
+
+                row.appendChild(cellAcoes);
+
+                tbody.appendChild(row);
+            }
+        }
+
+        function criarCelula(row, texto) {
+            var cell = document.createElement("td");
+            cell.textContent = texto;
+            row.appendChild(cell);
+        }
+
+        function criarEditarHandler(index) {
+            return function () {
+                editarCadastro(index);
+            };
+        }
+
+        function criarExcluirHandler(index) {
+            return function () {
+                excluirCadastro(index);
+            };
+        }
+
+        function editarCadastro(index) {
+            var linha = document.querySelector("#datagrid tbody tr:nth-child(" + (index + 1) + ")");
+            if (linha) {
+                var celulas = linha.querySelectorAll("td");
+
+                for (var i = 0; i < celulas.length - 1; i++) {
+                    var valorAtual = celulas[i].textContent;
+
+                    var input = document.createElement("input");
+                    input.type = "text";
+                    input.value = valorAtual;
+
+                    celulas[i].textContent = "";
+                    celulas[i].appendChild(input);
+                }
+
+                var botaoSalvar = document.createElement("button");
+                botaoSalvar.textContent = "Salvar";
+                botaoSalvar.onclick = function () {
+                    salvarEdicao(index);
+                };
+
+                celulas[celulas.length - 1].innerHTML = "";
+                celulas[celulas.length - 1].appendChild(botaoSalvar);
+            }
+        }
+
+        function salvarEdicao(index) {
+            var linha = document.querySelector("#datagrid tbody tr:nth-child(" + (index + 1) + ")");
+            if (linha) {
+                var celulas = linha.querySelectorAll("td");
+
+                cadastros[index].nome = celulas[0].querySelector("input").value;
+                cadastros[index].email = celulas[1].querySelector("input").value;
+                cadastros[index].telefone = celulas[2].querySelector("input").value;
+
+                atualizarDatagrid();
+            }
+        }
+
+        function excluirCadastro(index) {
+            cadastros.splice(index, 1);
+            atualizarDatagrid();
+        }
+
+        function limparFormulario() {
+            document.getElementById("nome").value = "";
+            document.getElementById("email").value = "";
+            document.getElementById("telefone").value = "";
+        }
+    </script>
+</body>
+</html>
