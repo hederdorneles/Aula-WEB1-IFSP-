@@ -1,0 +1,57 @@
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .memory-game {
+    display: grid;
+    grid-template-columns: repeat(4, 100px);
+    grid-gap: 10px;
+  }
+  
+  .card {
+    width: 100px;
+    height: 100px;
+    perspective: 1000px;
+  }
+  
+  .card-inner {
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.5s;
+    transform: rotateY(0deg);
+  }
+  
+  .card.flipped .card-inner {
+    transform: rotateY(180deg);
+  }
+  
+  .card-inner div {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    backface-visibility: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .card-front {
+    background-color: #ddd;
+  }
+  
+  .card-back {
+    background-color: #4CAF50;
+    color: white;
+  }
+  
+  .card-back {
+    background-color: #4CAF50;
+    color: white;
+    transform: rotateY(180deg); /* Adicione esta linha para inverter a face inicialmente */
+  }
