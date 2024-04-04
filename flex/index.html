@@ -1,1 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 
+            *: Isso representa todos os elementos HTML na página.
+            *::before e *::after: Esses são os pseudoelementos before 
+                e after de todos os elementos na página, respectivamente.
+        */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            word-spacing: 1.4px;
+            color: #3309a8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            width: 80%;
+            height: 700px;
+            margin: 0 auto;
+            border: 10px solid;
+        }
+
+        .item {
+            width: 150px;
+            height: 150px;
+            background-color: #acaaaa;
+            padding: 1em;
+            font-weight: 700;
+            color: whitesmoke;
+            text-align: center;
+            border: 10px solid red;
+            border-radius: 10px;
+        }
+
+        
+        .container {
+            display: flex;
+            
+        }
+        .item-3 {
+            flex-shrink: 0;
+        }
+
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="item item-1">Caixa 1</div>
+        <div class="item item-2">Caixa 2</div>
+        <div class="item item-3">Caixa 3</div>
+ 
+    </div>
+</body>
+
+</html>
