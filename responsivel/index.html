@@ -1,1 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='style.css'>
+    <script src='main.js'></script>
+</head>
+<body>
+    <p>O tamanho da tela é: <result id="tamanhoTela"></result></p>
 
+    <script>
+
+        function atualizarTamanhoTela() {
+            var larguraTela = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+            var alturaTela = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+
+            var tamanhoTelaTag = document.getElementById("tamanhoTela");
+            tamanhoTelaTag.textContent = larguraTela + " x " + alturaTela;
+        }
+        atualizarTamanhoTela();
+        window.addEventListener("resize", atualizarTamanhoTela);
+    </script>
+    <div class="wrapper">
+        <header class="header">
+            <h1>Header - Cabeçalho</h1>
+        </header>
+        <article class="main">
+            <p>
+                <b>MAIN</b> - Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sequi cumque tenetur, repellendus nisi expedita sapiente possimus excepturi aut pariatur aliquam tempore nulla, nam reiciendis fugit error dolor, molestias minima accusamus!
+            </p>
+        </article>
+
+        <aside class="aside lado1">
+            <h1>Lado 1</h1>
+        </aside>
+
+        <aside class="aside lado2">
+            <h2>Lado 2</h2>
+        </aside>
+
+        <footer class="footer">
+            <h1>Footer - Rodapé</h1>
+        </footer>
+    </div>    
+</body>
+</html>
