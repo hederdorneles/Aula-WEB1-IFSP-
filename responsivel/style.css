@@ -29,20 +29,25 @@
 .lado2{
     background: rgb(0, 20, 1);
 }
-@media all and (min-width: 800px){
-    .main{
+
+/* Aplica estilos especificamente para telas maiores que 800px */
+@media all and (min-width: 800px) {
+    /* Aumenta a flexibilidade da seção principal para ocupar mais espaço */
+    .main {
         flex: 3;
+        /* Altera a ordem de exibição da seção principal para ser exibida após lado1 e antes lado2 */
+        order: 2;
     }
-    .lado1{
+    /* Altera a ordem de exibição de lado1 para ser exibido antes da seção principal */
+    .lado1 {
         order: 1;
     }
-    .lado2{
-        order: 2;
+    /* Altera a ordem de exibição de lado2 para ser exibido após a seção principal */
+    .lado2 {
+        order: 3;
     }
-    .main{
-        order: 2;
-    }
-    .footer{
+    /* Altera a ordem de exibição do rodapé para ser exibido no final */
+    .footer {
         order: 4;
     }
 }
