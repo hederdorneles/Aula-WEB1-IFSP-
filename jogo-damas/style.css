@@ -1,0 +1,68 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #eee;
+    margin: 0;
+    padding: 20px;
+    font-family: sans-serif;
+}
+
+#indicador-turno {
+    font-size: 20px;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.tabuleiro {
+    display: flex;
+    flex-direction: column;
+    border: 4px solid #333;
+}
+
+.linha {
+    display: flex;
+}
+
+.casa {
+    width: 60px;
+    height: 60px;
+    position: relative;
+}
+
+.branca {
+    background-color: #f0d9b5;
+}
+
+.preta {
+    background-color: #b58863;
+}
+
+.peca {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.3);
+    cursor: grab;
+}
+
+.peca.branca {
+    background-color: white;
+    border: 2px solid #ccc;
+}
+
+.peca.preta {
+    background-color: black;
+    border: 2px solid #666;
+}
+
+.peca.dama {
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.3), 0 0 0 4px gold;
+}
+
+.casa.destino-valido {
+    outline: 3px dashed yellow;
+}
